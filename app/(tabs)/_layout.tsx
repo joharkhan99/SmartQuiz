@@ -6,9 +6,14 @@ export default function TabLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: "Home",
+          title: "Smart Quiz",
           tabBarStyle: { display: "none" },
           tabBarActiveBackgroundColor: "rgba(0,0,0,0.1)",
+          headerStyle: {
+            margin: 0,
+            backgroundColor: "transparent",
+            elevation: 0,
+          },
         }}
       />
     </Tabs>
