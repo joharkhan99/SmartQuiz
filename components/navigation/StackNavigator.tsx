@@ -4,6 +4,7 @@ import { Stack } from "expo-router";
 const StackNavigator = () => {
   return (
     <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen
         name="getstarted/index"
         options={{ headerShown: false, title: "Get Started" }}

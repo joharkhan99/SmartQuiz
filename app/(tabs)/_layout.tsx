@@ -8,11 +8,16 @@ export default function TabLayout() {
         options={{
           title: "Smart Quiz",
           tabBarStyle: { display: "none" },
-          tabBarActiveBackgroundColor: "rgba(0,0,0,0.1)",
           headerStyle: {
             margin: 0,
-            backgroundColor: "transparent",
+            backgroundColor: "#fafafa",
             elevation: 0,
+            height: 40,
+          },
+          headerTitleStyle: {
+            fontFamily: "serif",
+            fontStyle: "italic",
+            fontWeight: "900",
           },
         }}
       />
