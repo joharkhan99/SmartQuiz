@@ -43,6 +43,7 @@ const shadowStyle = {
 // array of category data
 const categories = [
   {
+    id: "animals",
     title: "Animals",
     image: require("../../assets/category/animal.png"),
     imageClass: "-mt-10",
@@ -50,6 +51,7 @@ const categories = [
     length: animals.length,
   },
   {
+    id: "brainTeasers",
     title: "Brain Teasers",
     image: require("../../assets/category/brain-teasers.png"),
     imageClass: "-mt-16 w-40 h-40",
@@ -57,6 +59,7 @@ const categories = [
     length: brainTeasers.length,
   },
   {
+    id: "celebrities",
     title: "Celebrities",
     image: require("../../assets/category/celebrities.png"),
     imageClass: "-mt-8 w-28 h-28",
@@ -64,6 +67,7 @@ const categories = [
     length: celebrities.length,
   },
   {
+    id: "entertainment",
     title: "Entertainment",
     image: require("../../assets/category/entertainment.png"),
     imageClass: "-mt-8",
@@ -71,6 +75,7 @@ const categories = [
     length: entertainment.length,
   },
   {
+    id: "forKids",
     title: "For Kids",
     image: require("../../assets/category/for-kids.png"),
     imageClass: "-mt-11 w-32 h-32",
@@ -78,6 +83,7 @@ const categories = [
     length: forKids.length,
   },
   {
+    id: "general",
     title: "General",
     image: require("../../assets/category/general.png"),
     imageClass: "-mt-10",
@@ -85,6 +91,7 @@ const categories = [
     length: general.length,
   },
   {
+    id: "geography",
     title: "Geography",
     image: require("../../assets/category/geography.png"),
     imageClass: "-mt-8 w-24 h-24",
@@ -92,6 +99,7 @@ const categories = [
     length: geography.length,
   },
   {
+    id: "history",
     title: "History",
     image: require("../../assets/category/history.png"),
     imageClass: "-mt-10",
@@ -99,6 +107,7 @@ const categories = [
     length: history.length,
   },
   {
+    id: "hobbies",
     title: "Hobbies",
     image: require("../../assets/category/hobbies.png"),
     imageClass: "-mt-10 w-28 h-28",
@@ -106,6 +115,7 @@ const categories = [
     length: hobbies.length,
   },
   {
+    id: "humanities",
     title: "Humanities",
     image: require("../../assets/category/humanities.png"),
     imageClass: "-mt-10",
@@ -113,6 +123,7 @@ const categories = [
     length: humanities.length,
   },
   {
+    id: "literature",
     title: "Literature",
     image: require("../../assets/category/literature.png"),
     imageClass: "-mt-8 w-24 h-24",
@@ -120,6 +131,7 @@ const categories = [
     length: literature.length,
   },
   {
+    id: "movies",
     title: "Movies",
     image: require("../../assets/category/movies.png"),
     imageClass: "-mt-10",
@@ -127,6 +139,7 @@ const categories = [
     length: movies.length,
   },
   {
+    id: "music",
     title: "Music",
     image: require("../../assets/category/music.png"),
     imageClass: "-mt-10 w-24 h-24",
@@ -134,6 +147,7 @@ const categories = [
     length: music.length,
   },
   {
+    id: "newest",
     title: "Newest",
     image: require("../../assets/category/newest.png"),
     imageClass: "-mt-10",
@@ -141,6 +155,7 @@ const categories = [
     length: newest.length,
   },
   {
+    id: "people",
     title: "People",
     image: require("../../assets/category/people.png"),
     imageClass: "-mt-10 w-24 h-24",
@@ -148,6 +163,7 @@ const categories = [
     length: people.length,
   },
   {
+    id: "religionFaith",
     title: "Religion & Faith",
     image: require("../../assets/category/religion-faith.png"),
     imageClass: "-mt-10",
@@ -155,13 +171,15 @@ const categories = [
     length: religionFaith.length,
   },
   {
-    title: "Science",
+    id: "science",
+    title: "Science & Tech",
     image: require("../../assets/category/science.png"),
     imageClass: "-mt-10 w-24 h-24",
     wrapperClass: "-mt-16",
     length: science.length,
   },
   {
+    id: "sports",
     title: "Sports",
     image: require("../../assets/category/sports.png"),
     imageClass: "-mt-10",
@@ -169,6 +187,7 @@ const categories = [
     length: sports.length,
   },
   {
+    id: "television",
     title: "Television",
     image: require("../../assets/category/television.png"),
     imageClass: "-mt-10 w-24 h-24",
@@ -176,6 +195,7 @@ const categories = [
     length: television.length,
   },
   {
+    id: "videoGames",
     title: "Video Games",
     image: require("../../assets/category/video-games.png"),
     imageClass: "-mt-9",
@@ -183,6 +203,7 @@ const categories = [
     length: videoGames.length,
   },
   {
+    id: "world",
     title: "World",
     image: require("../../assets/category/world.png"),
     imageClass: "-mt-8 w-24 h-24",
@@ -220,23 +241,32 @@ const GetStarted = () => {
                 } items-start ${rowIndex > 0 ? "mt-2" : ""}`}
               >
                 {row.map((cat: any, idx: any) => (
-                  <TouchableOpacity
+                  <View
                     key={idx}
                     className={`bg-white ${
                       row.length > 1 ? "flex-1" : "w-full"
                     } rounded-xl p-3 ${cat.wrapperClass}`}
                     style={shadowStyle}
                   >
-                    <View className="flex flex-col items-start gap-0">
-                      <Image source={cat.image} className={cat.imageClass} />
-                      <Text className="text-lg font-bold mt-2 capitalize">
-                        {cat.title}
-                      </Text>
-                      <Text className="text-sm text-neutral-400">
-                        {cat.length} questions
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
+                    <Link
+                      href={{
+                        pathname: "/questions/[categoryId]",
+                        params: {
+                          categoryId: cat.id,
+                        },
+                      }}
+                    >
+                      <View className="flex flex-col items-start gap-0">
+                        <Image source={cat.image} className={cat.imageClass} />
+                        <Text className="text-lg font-bold mt-2 capitalize">
+                          {cat.title}
+                        </Text>
+                        <Text className="text-sm text-neutral-400">
+                          {cat.length} questions
+                        </Text>
+                      </View>
+                    </Link>
+                  </View>
                 ))}
               </View>
             ))}

@@ -13,6 +13,7 @@ const StackNavigator = () => {
       <Stack.Screen
         name="questions/[categoryId]"
         options={{
+          headerShown: false,
           title: "Questions Screen",
         }}
       />
