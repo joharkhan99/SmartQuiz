@@ -363,7 +363,7 @@ const QuestionScreen = () => {
             </View>
           </View>
 
-          <View className="bg-[#dcf8ff] w-full rounded-xl p-5 py-10 relative mt-12">
+          <View className="bg-[#dcf8ff] w-full rounded-xl p-5 py-10 pb-4 relative mt-8">
             <View className="flex-1 justify-center items-center -mt-20">
               <View className="border-[3px] border-white rounded-full w-20 h-20 bg-white">
                 <View className="w-full h-full rounded-full flex justify-center items-center border-[4px] border-[#3eb8d4]">
@@ -386,7 +386,7 @@ const QuestionScreen = () => {
           </View>
 
           {/* Options */}
-          <View className="flex flex-col w-full gap-3">
+          <View className="flex flex-col w-full gap-2">
             {questionData.choices.map((opt: string, idx: number) => {
               const isCorrectOpt = opt === correct;
               const isSelectedWrong = opt === selectedOption && isWrong;
@@ -410,34 +410,39 @@ const QuestionScreen = () => {
                   key={idx}
                   onPress={() => handleOptionPress(opt)}
                   disabled={answered}
-                  className={`flex-row justify-between items-center p-4 rounded-xl ${bgClass} ${borderClass}`}
+                  className={`flex-row justify-between items-center p-4 w-full rounded-xl ${bgClass} ${borderClass}`}
+                  activeOpacity={0.5}
                 >
-                  <Text
-                    className={`font-medium ${
-                      answered
-                        ? isCorrectOpt
-                          ? "text-[#3eb8d4]"
-                          : isSelectedWrong
-                          ? "text-[#ff5644]"
+                  <View className="flex-1">
+                    <Text
+                      className={`font-medium ${
+                        answered
+                          ? isCorrectOpt
+                            ? "text-[#3eb8d4]"
+                            : isSelectedWrong
+                            ? "text-[#ff5644]"
+                            : "text-[#797979]"
                           : "text-[#797979]"
-                        : "text-[#797979]"
-                    }`}
-                  >
-                    {opt}
-                  </Text>
-                  {answered && isCorrectOpt && (
-                    <Ionicons
-                      name="checkmark-circle-sharp"
-                      size={24}
-                      color="#3eb8d4"
-                    />
-                  )}
-                  {answered && isSelectedWrong && (
-                    <MaterialIcons name="cancel" size={24} color="#ff5644" />
-                  )}
-                  {!answered && (
-                    <View className="border-2 border-[#efefef] w-6 h-6 rounded-full"></View>
-                  )}
+                      }`}
+                    >
+                      {opt}
+                    </Text>
+                  </View>
+                  <View className="flex-shrink-0 ml-1">
+                    {answered && isCorrectOpt && (
+                      <Ionicons
+                        name="checkmark-circle-sharp"
+                        size={24}
+                        color="#3eb8d4"
+                      />
+                    )}
+                    {answered && isSelectedWrong && (
+                      <MaterialIcons name="cancel" size={24} color="#ff5644" />
+                    )}
+                    {!answered && (
+                      <View className="border-2 border-[#efefef] w-6 h-6 rounded-full"></View>
+                    )}
+                  </View>
                 </TouchableOpacity>
               );
             })}
@@ -461,15 +466,16 @@ const QuestionScreen = () => {
       </ScrollView>
 
       {/* Result Modal */}
-      {showResultModal && (
-        <ResultModal
-          score={score}
-          total={totalQuestions}
-          onClose={handleClose}
-          onRestart={handleRestart}
-          // onStartOver={handleStartOver}
-        />
-      )}
+      {/* {showResultModal && ( */}
+      <ResultModal
+        isVisible={showResultModal}
+        score={score}
+        total={totalQuestions}
+        onClose={handleClose}
+        onRestart={handleRestart}
+        // onStartOver={handleStartOver}
+      />
+      {/* )} */}
     </>
   );
 };

@@ -6,9 +6,16 @@ interface Props {
   onRestart: () => void;
   score: number;
   total: number;
+  isVisible: boolean;
 }
 
-const ResultModal = ({ onClose, score, total, onRestart }: Props) => {
+const ResultModal = ({
+  onClose,
+  score,
+  total,
+  onRestart,
+  isVisible,
+}: Props) => {
   const percent = (score / total) * 100;
   let title = "";
   let subtitle = "";
@@ -26,18 +33,22 @@ const ResultModal = ({ onClose, score, total, onRestart }: Props) => {
 
   return (
     <Modal
-      visible={true}
-      transparent
+      visible={isVisible}
+      // transparent
       animationType="slide"
-      presentationStyle="fullScreen"
+      // presentationStyle="fullScreen"
       onRequestClose={onClose}
     >
       <View className="flex-1 bg-[#000000cf] justify-center items-center w-full h-full">
         <View className="w-full h-full bg-white p-5 items-center justify-center">
           <View className="flex flex-col justify-between w-full items-center">
             <View
-              className="w-52 h-52 border-[6px] border-[#dcf8ff] rounded-full"
               style={{
+                width: 200,
+                height: 200,
+                borderWidth: 6,
+                borderColor: "#dcf8ff",
+                borderRadius: 200, // half of 52
                 shadowColor: "#0dc8f2",
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 1,
@@ -45,37 +56,93 @@ const ResultModal = ({ onClose, score, total, onRestart }: Props) => {
                 elevation: 15,
               }}
             >
-              <View className="w-full h-full rounded-full flex justify-center items-center flex-col gap-y-2 border-[6px] border-[#b4effe]">
-                <View className="w-full h-full rounded-full flex justify-center items-center flex-col gap-y-2 bg-[#3eb8d4] border-[6px] border-[#98def0]">
-                  <Text className="text-2xl text-white font-light">
+              <View
+                className="w-full h-full rounded-full flex justify-center items-center flex-col gap-y-2"
+                style={{
+                  borderWidth: 6,
+                  borderColor: "#b4effe",
+                }}
+              >
+                <View
+                  className="w-full h-full rounded-full flex justify-center items-center flex-col gap-y-2"
+                  style={{
+                    borderWidth: 6,
+                    borderColor: "#98def0",
+                    backgroundColor: "#3eb8d4",
+                  }}
+                >
+                  <Text
+                    className=" text-white font-light"
+                    style={{
+                      fontSize: 24,
+                      lineHeight: 32,
+                    }}
+                  >
                     Your Score
                   </Text>
-                  <Text className="font-semibold text-2xl text-white">
+                  <Text
+                    className="font-semibold text-white"
+                    style={{
+                      fontSize: 24,
+                      lineHeight: 32,
+                    }}
+                  >
                     {score}/30
                   </Text>
                 </View>
               </View>
             </View>
 
-            <Text className="text-3xl font-bold mt-10 text-[#3eb8d4]">
+            <Text
+              className="font-bold text-[#3eb8d4]"
+              style={{
+                fontSize: 30,
+                lineHeight: 36,
+                marginTop: 30,
+              }}
+            >
               {title}
             </Text>
-            <Text className="text-base text-[#3eb8d4]">{subtitle}</Text>
+            <Text
+              className=" text-[#3eb8d4]"
+              style={{
+                fontSize: 16,
+                lineHeight: 24,
+              }}
+            >
+              {subtitle}
+            </Text>
 
-            <View className="flex flex-row justify-between gap-4 mt-10">
+            <View
+              className="flex flex-row justify-between gap-4"
+              style={{
+                marginTop: 30,
+                columnGap: 16,
+              }}
+            >
               <TouchableOpacity
-                className="flex-1 text-center w-full bg-[#3eb8d4] rounded-lg p-3"
+                className="flex-1  w-full bg-[#3eb8d4] rounded-lg p-3"
                 onPress={onClose}
               >
-                <Text className="text-center text-white font-semibold text-lg">
+                <Text
+                  className=" text-white font-semibold text-lg"
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
                   Home
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                className="flex-1 text-center w-full bg-[#3eb8d4] rounded-lg p-3"
+                className="flex-1  w-full bg-[#3eb8d4] rounded-lg p-3"
                 onPress={onRestart}
               >
-                <Text className="text-center text-white font-semibold text-lg">
+                <Text
+                  className=" text-white font-semibold text-lg"
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
                   Play Again
                 </Text>
               </TouchableOpacity>
