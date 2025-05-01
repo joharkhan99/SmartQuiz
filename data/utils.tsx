@@ -190,3 +190,11 @@ export const categories = [
     length: world.length,
   },
 ];
+
+export type Theme = "light" | "dark";
+export interface ThemeContextValue {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+export const THEME_STORAGE_KEY = "@user-theme";

@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { useTheme } from "../themeContext/ThemeContext";
 
 interface Props {
   onClose: () => void;
@@ -19,6 +20,7 @@ const ResultModal = ({
   const percent = (score / total) * 100;
   let title = "";
   let subtitle = "";
+  const { theme } = useTheme();
 
   if (percent >= 80) {
     title = "Excellent! 🎉";
@@ -40,7 +42,11 @@ const ResultModal = ({
       onRequestClose={onClose}
     >
       <View className="flex-1 bg-[#000000cf] justify-center items-center w-full h-full">
-        <View className="w-full h-full bg-white p-5 items-center justify-center">
+        <View
+          className={`w-full h-full p-5 items-center justify-center ${
+            theme === "dark" ? "bg-[#1c1c1c]" : "bg-white"
+          }`}
+        >
           <View className="flex flex-col justify-between w-full items-center">
             <View
               style={{

@@ -29,6 +29,7 @@ import videoGames from "../../data/video-games.json";
 import world from "../../data/world.json";
 import { router } from "expo-router";
 import { BackHandler } from "react-native";
+import { useTheme } from "@/components/themeContext/ThemeContext";
 
 const dataMap: Record<string, any[]> = {
   animals,
@@ -70,6 +71,7 @@ const QuestionScreen = () => {
 
   const questions = dataMap[categoryKey] || [];
   const totalQuestions = Math.min(questions.length, 15);
+  const { theme } = useTheme();
 
   const initializeQuiz = async () => {
     try {
@@ -186,7 +188,10 @@ const QuestionScreen = () => {
       [
         { text: "Cancel", style: "cancel" },
         { text: "Yes", onPress: () => setShowResultModal(true) },
-      ]
+      ],
+      {
+        userInterfaceStyle: theme === "dark" ? "dark" : "light",
+      }
     );
   };
 
@@ -307,7 +312,11 @@ const QuestionScreen = () => {
 
   if (loading) {
     return (
-      <View className="flex-1 justify-center items-center bg-white">
+      <View
+        className={`flex-1 justify-center items-center ${
+          theme === "dark" ? "bg-[#1c1c1c]" : "bg-white"
+        }`}
+      >
         <Text>Loading quiz...</Text>
       </View>
     );
@@ -315,7 +324,11 @@ const QuestionScreen = () => {
 
   if (!questionData) {
     return (
-      <View className="flex-1 justify-center items-center bg-white">
+      <View
+        className={`flex-1 justify-center items-center ${
+          theme === "dark" ? "bg-[#1c1c1c]" : "bg-white"
+        }`}
+      >
         <Text>No questions available</Text>
         <TouchableOpacity
           className="mt-4 bg-[#3eb8d4] px-4 py-2 rounded-lg"
@@ -332,7 +345,12 @@ const QuestionScreen = () => {
 
   return (
     <>
-      <ScrollView style={{ flex: 1 }} className="w-full h-full bg-white">
+      <ScrollView
+        style={{ flex: 1 }}
+        className={`w-full h-full ${
+          theme === "dark" ? "bg-[#1c1c1c]" : "bg-white"
+        }`}
+      >
         <View
           className="flex flex-col justify-between items-center p-5 h-full w-full gap-8"
           style={{ flex: 1 }}
@@ -340,15 +358,30 @@ const QuestionScreen = () => {
           {/* progress */}
           <View className="flex w-full flex-row items-center gap-x-4">
             <TouchableOpacity
-              className="w-8 h-8 border border-[#efefef] rounded-full flex justify-center items-center"
+              className={`w-8 h-8 border ${
+                theme === "dark" ? "border-[#5f5f5f]" : "border-[#efefef]"
+              } rounded-full flex justify-center items-center`}
               onPress={handleExit}
             >
-              <FontAwesome6 name="xmark" size={16} color="black" />
+              <FontAwesome6
+                name="xmark"
+                size={16}
+                color={theme === "dark" ? "white" : "black"}
+              />
             </TouchableOpacity>
 
-            <View className="flex-1 border border-[#efefef] rounded-full p-1 px-1.5 flex-row items-center gap-x-4">
+            <View
+              className={`flex-1 border ${
+                theme === "dark" ? "border-[#5f5f5f]" : "border-[#efefef]"
+              } rounded-full p-1 px-1.5 flex-row items-center gap-x-4`}
+            >
               <View className="relative w-full flex-1">
-                <View className="bg-[#efefef] w-full p-1.5 rounded-full"></View>
+                <View
+                  className="w-full p-1.5 rounded-full"
+                  style={{
+                    backgroundColor: theme === "dark" ? "#323232" : "#efefef",
+                  }}
+                ></View>
                 <View
                   className="bg-[#ff9b3b] w-[50%] p-1.5 rounded-full absolute left-0 top-0"
                   style={{
@@ -363,9 +396,19 @@ const QuestionScreen = () => {
             </View>
           </View>
 
-          <View className="bg-[#dcf8ff] w-full rounded-xl p-5 py-10 pb-4 relative mt-8">
+          <View
+            className={`w-full rounded-xl p-5 py-10 pb-4 relative mt-8 ${
+              theme === "dark" ? "bg-[#323232]" : "bg-[#dcf8ff]"
+            }`}
+          >
             <View className="flex-1 justify-center items-center -mt-20">
-              <View className="border-[3px] border-white rounded-full w-20 h-20 bg-white">
+              <View
+                className={`border-[3px] rounded-full w-20 h-20 ${
+                  theme === "dark"
+                    ? "bg-[#1c1c1c] border-[#1c1c1c]"
+                    : "bg-white border-white"
+                }`}
+              >
                 <View className="w-full h-full rounded-full flex justify-center items-center border-[4px] border-[#3eb8d4]">
                   <Text className="text-[#3eb8d4] font-bold text-xl">
                     {score}
@@ -381,7 +424,14 @@ const QuestionScreen = () => {
               >
                 Question
               </Text>
-              <Text className="font-bold text-lg">{questionData.question}</Text>
+              <Text
+                className="font-bold text-lg"
+                style={{
+                  color: theme === "dark" ? "white" : "black",
+                }}
+              >
+                {questionData.question}
+              </Text>
             </View>
           </View>
 
@@ -392,17 +442,29 @@ const QuestionScreen = () => {
               const isSelectedWrong = opt === selectedOption && isWrong;
               const bgClass = answered
                 ? isCorrectOpt
-                  ? "bg-[#dcf8ff] border-[#3eb8d4]"
+                  ? `border-[#3eb8d4] ${
+                      theme === "dark" ? "bg-transparent" : "bg-[#dcf8ff]"
+                    }`
                   : isSelectedWrong
-                  ? "bg-[#ffdfdc] border-[#ff5644]"
-                  : "bg-white border-[#efefef]"
-                : "bg-white border-[#efefef]";
+                  ? `border-[#ff5644] ${
+                      theme === "dark" ? "bg-transparent" : "bg-[#ffdfdc]"
+                    }`
+                  : `${
+                      theme === "dark"
+                        ? "bg-[#1c1c1c] border-[#555555]"
+                        : "bg-white border-[#efefef]"
+                    }`
+                : `${
+                    theme === "dark"
+                      ? "bg-[#1c1c1c] border-[#555555]"
+                      : "bg-white border-[#efefef]"
+                  }`;
               const borderClass = answered
                 ? isCorrectOpt
                   ? "border-2 border-[#3eb8d4]"
                   : isSelectedWrong
                   ? "border-2 border-[#ff5644]"
-                  : "border-2 border-[#efefef]"
+                  : `border-2 border-[#efefef]`
                 : "border-2 border-[#efefef]";
 
               return (
@@ -415,14 +477,22 @@ const QuestionScreen = () => {
                 >
                   <View className="flex-1">
                     <Text
-                      className={`font-medium ${
+                      className={`${
+                        theme === "dark" ? "font-normal" : "font-medium"
+                      } ${
                         answered
                           ? isCorrectOpt
                             ? "text-[#3eb8d4]"
                             : isSelectedWrong
                             ? "text-[#ff5644]"
-                            : "text-[#797979]"
-                          : "text-[#797979]"
+                            : `${
+                                theme === "dark"
+                                  ? "text-white"
+                                  : "text-[#797979]"
+                              }`
+                          : `${
+                              theme === "dark" ? "text-white" : "text-[#797979]"
+                            }`
                       }`}
                     >
                       {opt}
@@ -432,15 +502,21 @@ const QuestionScreen = () => {
                     {answered && isCorrectOpt && (
                       <Ionicons
                         name="checkmark-circle-sharp"
-                        size={24}
+                        size={21}
                         color="#3eb8d4"
                       />
                     )}
                     {answered && isSelectedWrong && (
-                      <MaterialIcons name="cancel" size={24} color="#ff5644" />
+                      <MaterialIcons name="cancel" size={21} color="#ff5644" />
                     )}
                     {!answered && (
-                      <View className="border-2 border-[#efefef] w-6 h-6 rounded-full"></View>
+                      <View
+                        className={`border-2 ${
+                          theme === "dark"
+                            ? "border-[#555555]"
+                            : "border-[#efefef]"
+                        } w-6 h-6 rounded-full`}
+                      ></View>
                     )}
                   </View>
                 </TouchableOpacity>
@@ -452,6 +528,8 @@ const QuestionScreen = () => {
             className={`w-full items-center p-4 py-3 ${
               answered
                 ? "bg-[#3eb8d4] border-[#3eb8d4]"
+                : theme === "dark"
+                ? "bg-gray-500 border-gray-500"
                 : "bg-gray-300 border-gray-300"
             } border-2 rounded-xl`}
             activeOpacity={0.5}

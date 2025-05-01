@@ -1,45 +1,29 @@
 import { Link } from "expo-router";
 import React from "react";
-import {
-  Image,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Image, ScrollView, Text, View } from "react-native";
 import { categories } from "@/data/utils";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-// shadow style reused on each card
-const shadowStyle = {
-  shadowColor: "#bababa",
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.17,
-  shadowRadius: 2.54,
-  elevation: 15,
-};
-
-// chunk categories into rows of 2
-const rows: any[] = [];
-for (let i = 0; i < categories.length; i += 2) {
-  rows.push(categories.slice(i, i + 2));
-}
+import { useTheme } from "@/components/themeContext/ThemeContext";
 
 const Home = () => {
   // for testing
   // AsyncStorage.removeItem("hasShownWelcome");
+  const { theme } = useTheme();
+
   return (
-    <View className="flex-1 justify-center items-center ">
-      <ScrollView style={{ flex: 1 }} className="w-full bg-[#fafafa]">
+    <View className="flex-1 justify-center items-center">
+      <ScrollView
+        style={{ flex: 1 }}
+        className={`w-full ${
+          theme === "dark" ? "bg-[#1c1c1c]" : "bg-[#fafafa]"
+        }`}
+      >
         <View className="w-full p-5">
           <View className="flex flex-col flex-wrap w-full gap-5 my-10">
             <View className="flex flex-row w-full gap-6 items-start">
               <View
-                className="bg-white flex-1 rounded-xl p-3"
+                className="flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -47,6 +31,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -63,7 +48,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Animals
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -75,7 +65,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -83,6 +73,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -99,7 +90,12 @@ const Home = () => {
                       className="-mt-16 w-40 h-40"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Brain Teasers
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -115,7 +111,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-6"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -123,6 +119,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -139,7 +136,12 @@ const Home = () => {
                       className="-mt-8 w-28 h-28"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Celebrities
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -151,7 +153,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-2"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -159,6 +161,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -175,7 +178,12 @@ const Home = () => {
                       className="-mt-8"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Entertainment
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -191,7 +199,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-5"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -199,6 +207,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -215,7 +224,12 @@ const Home = () => {
                       className="-mt-11 w-32 h-32"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       For Kids
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -227,7 +241,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -235,6 +249,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -251,7 +266,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       General
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -267,7 +287,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-3.5"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -275,6 +295,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -291,7 +312,12 @@ const Home = () => {
                       className="-mt-8 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Geography
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -303,7 +329,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -311,6 +337,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -327,7 +354,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       History
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -343,7 +375,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-6"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -351,6 +383,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -367,7 +400,12 @@ const Home = () => {
                       className="-mt-10 w-28 h-28"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Hobbies
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -379,7 +417,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -387,6 +425,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -403,7 +442,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Humanities
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -419,7 +463,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-6"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -427,6 +471,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -443,7 +488,12 @@ const Home = () => {
                       className="-mt-8 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Literature
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -455,7 +505,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -463,6 +513,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -479,7 +530,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Movies
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -495,7 +551,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-8"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -503,6 +559,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -519,7 +576,12 @@ const Home = () => {
                       className="-mt-10 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Music
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -531,7 +593,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -539,6 +601,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -555,7 +618,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Newest
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -571,7 +639,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-12"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -579,6 +647,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -595,7 +664,12 @@ const Home = () => {
                       className="-mt-10 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       People
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -607,7 +681,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -615,6 +689,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -631,7 +706,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Religion & Faith
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -647,7 +727,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-16"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -655,6 +735,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -671,7 +752,12 @@ const Home = () => {
                       className="-mt-10 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Science & Tech
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -683,7 +769,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -691,6 +777,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -707,7 +794,12 @@ const Home = () => {
                       className="-mt-10"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Sports
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -723,7 +815,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3 -mt-20"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -731,6 +823,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -747,7 +840,12 @@ const Home = () => {
                       className="-mt-10 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Television
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -759,7 +857,7 @@ const Home = () => {
               <View
                 className="bg-white flex-1 rounded-xl p-3"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -767,6 +865,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -783,7 +882,12 @@ const Home = () => {
                       className="-mt-9"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       Video Games
                     </Text>
                     <Text className="text-sm text-neutral-400">
@@ -799,7 +903,7 @@ const Home = () => {
               <View
                 className="bg-white w-full rounded-xl p-3 -mt-[94px]"
                 style={{
-                  shadowColor: "#bababa",
+                  shadowColor: theme === "dark" ? "#000" : "#bababa",
                   shadowOffset: {
                     width: 0,
                     height: 2,
@@ -807,6 +911,7 @@ const Home = () => {
                   shadowOpacity: 0.17,
                   shadowRadius: 2.54,
                   elevation: 15,
+                  backgroundColor: theme === "dark" ? "#323232" : "white",
                 }}
               >
                 <Link
@@ -823,7 +928,12 @@ const Home = () => {
                       className="-mt-8 w-24 h-24"
                     />
 
-                    <Text className="text-lg font-bold mt-2 capitalize">
+                    <Text
+                      className="text-lg font-bold mt-2 capitalize"
+                      style={{
+                        color: theme === "dark" ? "#fff" : "#000",
+                      }}
+                    >
                       World
                     </Text>
                     <Text className="text-sm text-neutral-400">
