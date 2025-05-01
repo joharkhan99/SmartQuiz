@@ -464,8 +464,12 @@ const QuestionScreen = () => {
                   ? "border-2 border-[#3eb8d4]"
                   : isSelectedWrong
                   ? "border-2 border-[#ff5644]"
-                  : `border-2 border-[#efefef]`
-                : "border-2 border-[#efefef]";
+                  : `border-2 ${
+                      theme === "dark" ? "border-[#323232]" : "border-[#efefef]"
+                    }`
+                : `border-2 ${
+                    theme === "dark" ? "border-[#323232]" : "border-[#efefef]"
+                  }`;
 
               return (
                 <TouchableOpacity

@@ -3,6 +3,7 @@ import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import { categories } from "@/data/utils";
 import { useTheme } from "@/components/themeContext/ThemeContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
   // for testing
