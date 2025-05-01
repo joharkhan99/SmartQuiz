@@ -465,17 +465,13 @@ const QuestionScreen = () => {
         </View>
       </ScrollView>
 
-      {/* Result Modal */}
-      {/* {showResultModal && ( */}
       <ResultModal
         isVisible={showResultModal}
         score={score}
         total={totalQuestions}
         onClose={handleClose}
         onRestart={handleRestart}
-        // onStartOver={handleStartOver}
       />
-      {/* )} */}
     </>
   );
 };

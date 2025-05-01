@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { categories } from "@/data/utils";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // shadow style reused on each card
 const shadowStyle = {
@@ -27,6 +28,8 @@ for (let i = 0; i < categories.length; i += 2) {
 }
 
 const Home = () => {
+  // for testing
+  // AsyncStorage.removeItem("hasShownWelcome");
   return (
     <View className="flex-1 justify-center items-center ">
       <ScrollView style={{ flex: 1 }} className="w-full bg-[#fafafa]">
